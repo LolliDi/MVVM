@@ -12,9 +12,9 @@
             <TextBlock>Выберите арифметическую операцию</TextBlock>
             <ComboBox SelectedIndex="{Binding SelectIndexCB}" ItemsSource="{Binding CBData}"/>
             <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBox Name="TBoxNum1" Width="70" Margin="22,0,10,0"/>
+                <TextBox Width="70" Margin="22,0,10,0" Text="{Binding TB1}"/>
                 <TextBlock Text="{Binding SelectedOperation}" Width="16"/>
-                <TextBox Name="TBoxNum2" Width="70"/>
+                <TextBox Width="70" Text="{Binding TB2}"/>
             </StackPanel>
             <Button Command="{Binding BtnCommand}">Вычислить</Button>
             <TextBlock FontWeight="Bold">Результат:</TextBlock>

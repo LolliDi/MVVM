@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MVVM
 {
-    public class ViewModel:INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
-        public TextBox TBoxNum1;
-        public TextBox TBoxNum2;
 
         public List<string> CBData
         {
@@ -55,24 +49,35 @@ namespace MVVM
                 onPropChan("Answer");
             }
         }
+        public string TB1
+        {
+            get => Model.num1;
+            set => Model.num1 = value;
+        }
+
+        public string TB2
+        {
+            get => Model.num2;
+            set => Model.num2 = value;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void onPropChan([CallerMemberName] string prop = "")
         {
-            if(PropertyChanged != null)
+            if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
-        
+
         public RoutedCommand BtnCommand { get; set; } = new RoutedCommand();
         public CommandBinding CBinding1;
         public void CommandAnswer(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
-                double firstNum = Convert.ToDouble(TBoxNum1.Text);
-                double secondNum = Convert.ToDouble(TBoxNum2.Text);
+                double firstNum = Convert.ToDouble(Model.num1);
+                double secondNum = Convert.ToDouble(Model.num2);
                 if (Double.IsNaN(firstNum) || Double.IsNaN(secondNum))
                 {
                     throw new Exception("Введите цифры для выполнения операций!");
